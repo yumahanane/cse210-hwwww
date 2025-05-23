@@ -9,7 +9,7 @@ Behaviors:
 
 public class PromptGenerator
 {
-    public string _prompts = "";
+    public List<string> _prompts = new List<string>();
 
     public PromptGenerator()
     {
