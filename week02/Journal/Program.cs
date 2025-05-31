@@ -12,12 +12,30 @@ class Program
     {
         Console.WriteLine("Hello World! This is the Journal Project.");
 
-        Entry entry1 = new Entry();
 
+        List<string> dateList = new List<string>();
+        List<string> chosenPromptList = new List<string>();
+        List<string> responseList = new List<string>();
+
+        Entry entry1 = new Entry();
         string dateText = "";
         string thePrompt = "";
+        string response = "";
 
-
+        
+        foreach (string date in dateList)
+        {
+            dateText = date;
+        }
+        foreach (string prompt in chosenPromptList)
+        {
+            thePrompt = prompt;
+        }
+        foreach (string resp in responseList)
+        {
+            response = resp;
+        }
+        
 
         Journal theJournal = new Journal();
 
@@ -47,6 +65,7 @@ class Program
                 dateText = theCurrentTime.ToShortDateString();
 
                 entry1._date = dateText;
+                dateList.Add(dateText);
 
                 PromptGenerator promptsList = new PromptGenerator();
                 promptsList._prompts.Add("Who was the most interesting person I interacted with today?");
@@ -58,12 +77,15 @@ class Program
                 thePrompt = promptsList.GetRandomPrompt();
                 entry1._promptText = thePrompt;
                 Console.WriteLine(thePrompt);
+                chosenPromptList.Add(thePrompt);
+
                 // this assigns a value to the variable. That value is generated randomly
                 // using the GetRandomPrompt method. Then, it prints out in the console 
                 // that value, that is the chosen string.
-                
-                entry1._entryText = Console.ReadLine();
-                
+
+                response = Console.ReadLine();
+                entry1._entryText = response;
+                responseList.Add(response);            
 
             }
 
