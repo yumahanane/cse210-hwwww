@@ -12,31 +12,13 @@ class Program
     {
         Console.WriteLine("Hello World! This is the Journal Project.");
 
-
-        List<string> dateList = new List<string>();
-        List<string> chosenPromptList = new List<string>();
-        List<string> responseList = new List<string>();
-
+        // Create an instance of Entry and populate it
         Entry entry1 = new Entry();
         string dateText = "";
         string thePrompt = "";
         string response = "";
 
-        
-        foreach (string date in dateList)
-        {
-            dateText = date;
-        }
-        foreach (string prompt in chosenPromptList)
-        {
-            thePrompt = prompt;
-        }
-        foreach (string resp in responseList)
-        {
-            response = resp;
-        }
-        
-
+        // Create an instance of Journal
         Journal theJournal = new Journal();
 
         int choice = 0;
@@ -44,6 +26,7 @@ class Program
         {
             Console.WriteLine("Please select one of the following choices:");
 
+            // Create the menu
             List<string> menu = new List<string>();
             menu.Add("1. Write");
             menu.Add("2. Display");
@@ -51,22 +34,22 @@ class Program
             menu.Add("4. Save");
             menu.Add("5. Quit");
 
+            // Display the menu
             menu.ForEach(Console.WriteLine);
 
+            // Get response from user
             Console.Write("What would you like to do? ");
             choice = int.Parse(Console.ReadLine());
 
-
-
             if (choice == 1)
             {
-
+                // Generate the date
                 DateTime theCurrentTime = DateTime.Now;
                 dateText = theCurrentTime.ToShortDateString();
 
                 entry1._date = dateText;
-                dateList.Add(dateText);
 
+                // Create an instance of PromptGenerator and populate it 
                 PromptGenerator promptsList = new PromptGenerator();
                 promptsList._prompts.Add("Who was the most interesting person I interacted with today?");
                 promptsList._prompts.Add("What was the best part of my day?");
@@ -74,23 +57,22 @@ class Program
                 promptsList._prompts.Add("What was the strongest emotion I felt today?");
                 promptsList._prompts.Add("If I had one thing I could do over today, what would it be?");
 
+                // Generate a random prompt
+                // This assigns a value to the variable. That value is generated randomly
+                // using the GetRandomPrompt method. Then, it prints out in the console 
+                // that value, that is the chosen string.
                 thePrompt = promptsList.GetRandomPrompt();
                 entry1._promptText = thePrompt;
                 Console.WriteLine(thePrompt);
-                chosenPromptList.Add(thePrompt);
 
-                // this assigns a value to the variable. That value is generated randomly
-                // using the GetRandomPrompt method. Then, it prints out in the console 
-                // that value, that is the chosen string.
-
+                // Get answer from user
                 response = Console.ReadLine();
                 entry1._entryText = response;
-                responseList.Add(response);            
-
             }
 
             else if (choice == 2)
             {
+                // Append the entry to the Journal
                 theJournal.AddEntry(entry1);
                 theJournal.DisplayAll();
             }
