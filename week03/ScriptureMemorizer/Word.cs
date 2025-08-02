@@ -24,21 +24,36 @@ public class Word
     public Word(string text)
     {
         _text = text;
+        _isHidden = false;
     }
+
+    // methods
     public void Hide()
     {
-
+        int size = _text.Length;
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine("_");
+        }
     }
     public void Show()
     {
-
+        int size = _text.Length;
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine(i);
+        }
     }
     public void IsHidden()
     {
+        if (_text == "_")
+        {
+            Console.WriteLine(_isHidden);
+        }
 
     }
     public string GetDisplayText()
     {
-        return "";
+        return _text;
     }
 }

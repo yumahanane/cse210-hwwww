@@ -22,19 +22,25 @@ public class Scripture
     }
     public Scripture(Reference Reference, string text)
     {
+        _reference = Reference;
 
+        text = string.Join(" ", _words);
     }
 
     public void HideRandomWords()
     {
-
+        var randomWord = new Random();
+        int index = randomWord.Next(_words.Count);
+        Word word = _words[index];
+        word.Hide();
+       
     }
     public string GetDisplayText()
     {
-        return "";
+        return $"{_reference} - {_words}";
     }
     public bool IsCompletelyHidden()
-    {
+    { 
         return true;
     }
 }
