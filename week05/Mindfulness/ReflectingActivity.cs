@@ -31,7 +31,7 @@ public class ReflectingActivity : Activity
 
         Console.Write("Now ponder on each of the following questions as they are related to this experience.\nYou may begin in: ");
         //countdown 4s
-        ShowCountDown(4);
+        ShowCountDown(5);
         Console.Clear();
 
         DisplayQuestion();
@@ -51,6 +51,7 @@ public class ReflectingActivity : Activity
         var randomQuestion = new Random();
         int index = randomQuestion.Next(_questions.Count);
         string question = _questions[index];
+    
         return question;
     }
 
@@ -69,9 +70,9 @@ public class ReflectingActivity : Activity
         while (DateTime.Now < future)
         {
 
-            Console.Write($"> {GetRandomQuestion()}");
+            Console.Write($"> {GetRandomQuestion()} ");
             // spinner
-            ShowSpinner();
+            ShowSpinner(15);
             Console.WriteLine();
         }
 

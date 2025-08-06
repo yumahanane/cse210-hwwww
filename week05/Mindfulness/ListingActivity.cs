@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 
+
 public class ListingActivity : Activity
 {
     private int _count;
@@ -20,11 +21,32 @@ public class ListingActivity : Activity
         Console.WriteLine("List as many responses you can to the following prompt:");
         GetRandomPrompt();
         Console.WriteLine();
+
+        // Not working properly
+
+        Console.WriteLine("If you would like to save your answers to a file, press 1. If not, press 2.");
+        int choice = int.Parse(Console.ReadLine());
+        
         Console.Write("You may begin in: ");
         //countdown 3s
-        ShowCountDown(3);
+        ShowCountDown(5);
         Console.WriteLine();
-        GetLIstFromUser(); 
+
+        if (choice == 1)
+        {
+            GetLIstFromUser();
+
+            string filePath = @"C:\Users\yumas\OneDrive\Documents\cse21000\demo\test.txt";
+
+            File.WriteAllLines(filePath, GetLIstFromUser());
+        }
+
+        else
+        {
+            GetLIstFromUser();
+            
+        }
+        
         Console.WriteLine($"You listed {_count} items!");
 
     }
@@ -40,6 +62,7 @@ public class ListingActivity : Activity
 
     public List<string> GetLIstFromUser()
     {
+       
         // must be called right after Run()
         List<string> userList = new List<string>();
 
@@ -49,12 +72,12 @@ public class ListingActivity : Activity
 
         while (DateTime.Now < future)
         {
-            // for each response, add to the list
             Console.Write("> ");
             userList.Add(Console.ReadLine());
-            _count++;
+            _count++;     
+
         }
         return userList;
-        
+
     }
 }
